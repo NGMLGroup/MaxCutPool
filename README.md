@@ -2,7 +2,7 @@
 
 [![ICLR](https://img.shields.io/badge/{Venue}-{Year}-blue.svg?style=flat-square)]({Link to paper page})
 [![PDF](https://img.shields.io/badge/%E2%87%A9-PDF-orange.svg?style=flat-square)]({Link to paper pdf})
-[![arXiv](https://img.shields.io/badge/arXiv-{arXiv ID}-b31b1b.svg?style=flat-square)]({Link to arxiv page})
+[![arXiv](https://img.shields.io/badge/arXiv-2409.05100-b31b1b.svg?style=flat-square)](http://arxiv.org/abs/2409.05100)
 
 This repository contains the code for the reproducibility of the experiments presented in the paper "{Paper Title}" ({Venue} {Year}). {Paper TL;DR}.
 
