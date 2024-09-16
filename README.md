@@ -42,7 +42,17 @@ The directory is structured as follows:
 
 ## Datasets
 
-The datasets used in the experiment are provided by [tsl](https://github.com/TorchSpatiotemporal/tsl). External dataset can be downloaded at this [link]({Link to dataset}). We recommend storing the downloaded datasets in a folder named `datasets` inside this directory.
+All datasets are automatically downloaded and stored in the folder `datasets`.
+
+The datasets used in the experiment are provided by [pyg](). GCB-H and EXPWL1 datasets are downloaded from these links:
+- [GCB-H]().
+- [EXPWL1]().
+
+### Multipartite
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11616515.svg)](https://zenodo.org/doi/10.5281/zenodo.11616515)
+
+Descrivere come è fatto il dataset
 
 ## Configuration files
 
