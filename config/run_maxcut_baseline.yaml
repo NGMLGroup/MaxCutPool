@@ -1,0 +1,9 @@
+defaults:
+ - dataset: grid
+ - _self_
+
+dataset:
+  hparams:
+    directed: false
+batch_size: 1
+method: GW

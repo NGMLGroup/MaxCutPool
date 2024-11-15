@@ -1,0 +1,40 @@
+defaults:
+  - default
+  - override dataset: grid
+  - override architecture: cut
+  - override optimizer: adam
+  - override pooler: maxcutpool-cut
+  - override lr_scheduler: redplat
+  - _self_
+
+
+dataset:
+  hparams:
+    directed: false
+batch_size: 1
+
+optimizer:
+  hparams:
+    lr: 1e-3
+
+log_grad_norm: False
+log_lr: True
+
+tags: ['maxcutpool-cut', 'cut']
+
+plot_preds_at_epoch:
+  set: ['test']
+  batch: 0
+  samples: 0
+
+#### Training params
+epochs: 2000
+limit_train_batches: null
+limit_val_batches: null
+clip_val: 5.0
+
+callbacks:
+  patience: 500
+  checkpoints: True   # save checkpoints while training
+  monitor: train_loss
+  mode: min

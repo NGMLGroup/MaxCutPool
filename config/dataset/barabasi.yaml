@@ -1,0 +1,14 @@
+# @package _global_
+
+defaults:
+  - reload_default
+
+dataset:
+  name: PyGSPDataset
+  hparams:
+    dataset: BarabasiAlbert
+  params:
+    N: 100            # Number of nodes
+    m0: 4             # Number of initial nodes
+    m: 4              # Number of connections at each step
+    seed: 0           # Seed for the random number generator

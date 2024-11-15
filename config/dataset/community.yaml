@@ -1,0 +1,13 @@
+# @package _global_
+
+defaults:
+  - reload_default
+
+dataset:
+  name: PyGSPDataset
+  hparams:
+    dataset: Community
+  params:
+    N: 90  # Number of nodes
+    Nc: 3   # Number of communities
+    seed: 0

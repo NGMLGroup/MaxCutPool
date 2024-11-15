@@ -1,0 +1,15 @@
+# @package _global_
+
+architecture:
+  name: nodeclassifier
+  model: bottleneck
+  hparams:
+    num_mp_layers: 1
+    hidden_channels: 32
+    activation: relu
+    pool_ratio: 0.5
+    lift_zero_pad: false
+    use_gine_enc: false
+    use_gine_bottleneck: true
+    res_connect: null # null, sum, cat
+    dropout: 0.1

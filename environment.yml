@@ -1,0 +1,31 @@
+name: maxcutpool
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - matplotlib
+  - pytorch=2.1.2
+  - pytorch-cuda=12.1
+  - torchinfo
+  - jupyter
+  - notebook
+  - numpy<2
+  - pandas
+  - pip
+  - pip:
+      - torch-geometric==2.5.0
+      - cvxopt
+      - cvxpy
+      - einops
+      - gravis
+      - hydra-core
+      - hydra-optuna-sweeper
+      - hydra-joblib-launcher
+      - imageio
+      - omegaconf
+      - pygsp
+      - lightning
+      - tensorboard
+      - -r requirements.txt

@@ -1,0 +1,15 @@
+# @package _global_
+
+defaults:
+  - reload_default
+
+
+dataset:
+  name: PyGSPDataset
+  hparams:
+    dataset: RandomRegular
+  params:
+    N: 50            # Number of nodes
+    k: 3              # Number of connections, or degree, of each node
+    maxIter: 10       # Maximum number of iterations to try to create the graph
+    seed: 0           # Seed for the random number generator

@@ -1,0 +1,17 @@
+# @package _global_
+
+defaults:
+  - reload_default
+
+dataset:
+  name: PyGSPDataset
+  hparams:
+    dataset: Sensor
+  params:
+    N: 50               # Number of nodes
+    Nc: 2               # Minimum number of connections
+    regular: false      # Flag to fix the number of connections to nc
+    n_try: 50           # Number of attempt to create the graph
+    distribute: false   # To distribute the points more evenly
+    connected: true     # To force the graph to be connected
+    seed: 1             # Seed for the random number generator

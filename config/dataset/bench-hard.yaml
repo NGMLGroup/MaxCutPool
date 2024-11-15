@@ -1,0 +1,9 @@
+# @package _global_
+
+dataset:
+  name: BenchHard
+  hparams:
+    seed: 777
+    n_folds: 10
+    fold_id: 0
+    batch_size: 32

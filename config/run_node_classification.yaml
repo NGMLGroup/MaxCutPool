@@ -1,0 +1,37 @@
+defaults:
+  - default
+  - override dataset: tolo
+  - override architecture: nodeclassifier
+  - override pooler: maxcutpool
+  - override lr_scheduler: redplat
+  - _self_
+
+#### Experiment params
+run_tags: ["node_classification"]
+
+dataset:
+  hparams:
+    fold: 0
+
+#### Training params
+optimizer:
+  hparams:
+    lr: 5e-4
+
+lr_scheduler:
+  hparams:
+    patience: 500
+
+batch_size: 1
+epochs: 20000
+
+callbacks:
+  patience: 2000
+  monitor: val_loss
+  mode: min
+
+plot_preds_at_epoch: # graphs are too large to be plotted
+  set: []
+  batch: 0
+  samples: 0
+  every: 100

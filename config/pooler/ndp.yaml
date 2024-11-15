@@ -1,0 +1,7 @@
+# @package _global_
+
+pooler:
+  name: ndp
+  hparams:
+    sparsify: true
+    sparse_thresh: 1e-2

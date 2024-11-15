@@ -1,0 +1,12 @@
+# @package _global_
+
+defaults:
+  - reload_default
+
+
+dataset:
+  name: PyGSPDataset
+  hparams:
+    dataset: Minnesota
+  params:
+    connect: true

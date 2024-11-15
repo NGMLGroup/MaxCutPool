@@ -1,0 +1,7 @@
+# @package _global_
+
+dataset:
+  name: Minesweeper
+  hparams:
+    norm_feats: true
+    fold: 0

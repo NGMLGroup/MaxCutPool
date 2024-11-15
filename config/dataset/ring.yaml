@@ -1,0 +1,12 @@
+# @package _global_
+
+defaults:
+  - reload_default
+
+dataset:
+  name: PyGSPDataset
+  hparams:
+    dataset: Ring
+  params:
+    N: 40             # Number of nodes
+    k: 1              # Number of neighbors in each direction

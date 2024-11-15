@@ -1,0 +1,13 @@
+# @package _global_
+
+defaults:
+  - reload_default
+
+
+dataset:
+  name: PyGSPDataset
+  hparams:
+    dataset: Grid2d
+  params:
+    N1: 8
+    N2: 12

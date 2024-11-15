@@ -1,0 +1,10 @@
+# @package _global_
+
+architecture:
+  name: graphclassifier
+  hparams:
+    num_layers_pre: 1
+    num_layers_post: 1
+    hidden_channels: 32
+    activation: elu
+    pool_ratio: 0.5

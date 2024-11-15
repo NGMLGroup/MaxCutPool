@@ -1,0 +1,13 @@
+# @package _global_
+
+pooler:
+  name: maxcutpool
+  hparams:
+    beta: 1
+    just_cut: true
+  aux_net:
+    delta: 2
+    mp_units: '${listmult: [4], 32}'
+    mp_act: ReLU
+    mlp_units: '${listmult: [4], 8}'
+    mlp_act: ReLU

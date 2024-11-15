@@ -1,0 +1,23 @@
+defaults:
+  - default
+  - override dataset: multipartite
+  - override pooler: maxcutpool
+  - _self_
+
+#### Experiment params 
+plot_preds_at_epoch:
+  set: ['test']
+  batch: 0
+  samples: 0
+
+#### Training params
+epochs: 1000
+limit_train_batches: null
+limit_val_batches: null
+clip_val: 5.0
+
+callbacks:
+  patience: 300
+  checkpoints: True   # save checkpoints while training
+  monitor: val_loss
+  mode: min

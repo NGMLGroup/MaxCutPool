@@ -1,0 +1,18 @@
+# @package _global_
+
+defaults:
+  - reload_default
+
+
+dataset:
+  name: PyGSPDataset
+  hparams:
+    dataset: ErdosRenyi
+  params:
+    N: 100            # Number of nodes
+    p: 0.1            # Probability of connection
+    directed: false   # Directed graph
+    self_loops: false # Self loops
+    connected: true   # To force the graph to be connected
+    max_iter: 100     # Maximum number of iterations to get a connected graph
+    seed: 0           # Seed for the random number generator

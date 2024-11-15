@@ -1,0 +1,11 @@
+# @package _global_
+
+defaults:
+  - reload_default
+
+
+dataset:
+  name: GsetDataset
+  hparams:
+    dataset: G1
+    directed: true

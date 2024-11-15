@@ -1,0 +1,19 @@
+# @package _global_
+
+pooler:
+  name: maxcutpool
+  hparams:
+    ratio: ${architecture.hparams.pool_ratio}
+    beta: 1.0
+    expressive: true
+    expressive_reduce: 'sum' # 'mean' or 'sum'
+    flip: false
+    max_iter: 5
+    just_cut: false
+    initial_embedding: true
+  aux_net:
+    delta: 2.0
+    mp_units: [32, 32, 32, 32, 16, 16, 16, 16, 8, 8, 8, 8]
+    mp_act: tanh
+    mlp_units: '${listmult: [16], 2}'
+    mlp_act: relu    

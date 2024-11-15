@@ -1,0 +1,36 @@
+defaults:
+  - _self_
+  - logger: tensorboard
+  - dataset: bench-hard
+  - architecture: graphclassifier
+  - pooler: maxcutpool
+  - optimizer: adam
+  - lr_scheduler: none
+
+
+hydra:
+  run:
+    dir: logs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+workers: 16
+log_grad_norm: False
+log_lr: True
+
+#### This is for logging images
+plot_preds_at_epoch:
+  set: ['val']
+  batch: 0
+  samples: 0
+  every: 10
+
+#### Training params
+epochs: 1000
+limit_train_batches: null
+limit_val_batches: null
+clip_val: 5.0
+
+callbacks:
+  patience: 300
+  checkpoints: True   # save checkpoints while training
+  monitor: val_loss
+  mode: min

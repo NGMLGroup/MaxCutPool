@@ -1,0 +1,19 @@
+# @package _global_
+
+defaults:
+  - reload_default
+
+dataset:
+  name: Multipartite
+  params:
+    seed: 777 # Seed for the graph generator
+    centers: 10
+    max_N: 20
+    graphs_per_class: 500
+
+  hparams:
+    seed: 777 # Seed for the split generator
+    n_folds: 10
+    fold_id: 0
+    batch_size: 32
+    use_downloaded: True

@@ -1,0 +1,8 @@
+# @package _global_
+
+architecture:
+  name: cut
+  hparams:
+    num_layers_pre: 1
+    hidden_channels: 32
+    activation: elu

@@ -1,98 +1,101 @@
-# {Paper Title} ({Venue} {Year})
+# MaxCutPool
 
-[![ICLR](https://img.shields.io/badge/{Venue}-{Year}-blue.svg?style=flat-square)]({Link to paper page})
-[![PDF](https://img.shields.io/badge/%E2%87%A9-PDF-orange.svg?style=flat-square)]({Link to paper pdf})
-[![arXiv](https://img.shields.io/badge/arXiv-2409.05100-b31b1b.svg?style=flat-square)](http://arxiv.org/abs/2409.05100)
+Official implementation of the paper ["MaxCutPool: differentiable feature-aware Maxcut for pooling in graph neural networks"]
 
-This repository contains the code for the reproducibility of the experiments presented in the paper "{Paper Title}" ({Venue} {Year}). {Paper TL;DR}.
+## Overview
 
-**Authors**: [Author 1](mailto:{Author1 mail}), [Author 2](mailto:{Author2 mail})
+This repository contains the implementation of MaxCutPool, a novel approach to compute the MAXCUT in attributed graphs. The method is designed to work with graphs that have features associated with both nodes and edges. Key features:
 
----
+- Fully differentiable architecture
+- Robust to underlying graph topology
+- Optimizes MAXCUT jointly with other objectives
+- Implements a hierarchical graph pooling layer for GNNs
+- Particularly effective for heterophilic graphs
 
-## In a nutshell
+## Installation
 
-{Paper description}.
-
-<!-- p align=center>
-	<img src="./overview.png" alt="{Image description}"/>
-</p -->
-
----
-
-## Directory structure
-
-The directory is structured as follows:
-
-```
-.
-├── config/
-│   ├── exp1/
-│   └── exp2/
-├── datasets/
-├── lib/
-├── requirements.txt
-├── conda_env.yaml
-└── experiments/
-    ├── exp1.py
-    └── exp2.py
-
-```
-
-
-## Datasets
-
-All datasets are automatically downloaded and stored in the folder `datasets`.
-
-The datasets used in the experiment are provided by [pyg](). GCB-H and EXPWL1 datasets are downloaded from these links:
-- [GCB-H]().
-- [EXPWL1]().
-
-### Multipartite
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11616515.svg)](https://zenodo.org/doi/10.5281/zenodo.11616515)
-
-Descrivere come è fatto il dataset
-
-## Configuration files
-
-The `config` directory stores all the configuration files used to run the experiment. They are divided into subdirectories according to the experiment they refer to.
-
-## Requirements
-
-We run all the experiments in `python 3.8`. To solve all dependencies, we recommend using Anaconda and the provided environment configuration by running the command:
+To install the required packages, create a conda environment using the provided environment file:
 
 ```bash
-conda env create -f conda_env.yml
-conda activate env_name
+conda env create -f environment.yml
+conda activate maxcutpool
 ```
 
-Alternatively, you can install all the requirements listed in `requirements.txt` with pip:
+
+The main dependencies include:
+- Python 3.10
+- PyTorch >= 2.0.0
+- PyTorch Geometric (PyG)
+- PyTorch Lightning
+- Hydra
+- Neptune (for logging)
+- Various scientific computing libraries (numpy, scipy, etc.)
+
+For a complete list of dependencies, see `environment.yml`.
+
+## Usage
+
+### Quick Start
+
+For a basic example of how to use the MaxCutPool layer, check out `example.py`. This file demonstrates:
+- Basic setup of the layer
+- Integration with PyTorch Geometric
+- Training and evaluation on a sample dataset
+
+### Experiments
+
+To replicate the experiments from the paper, you can use the following run scripts:
+
+1. MaxCut experiments:
 
 ```bash
-pip install -r requirements.txt
+python run_maxcut.py
 ```
 
-## Library
+2. Graph classification experiments:
 
-The support code, including the models and the datasets readers, are packed in a python library named `lib`. Should you have to change the paths to the datasets location, you have to edit the `__init__.py` file of the library.
+```bash
+python run_graph_classification.py
+```
 
+3. Node classification experiments:
 
-## Experiments
+```bash
+python run_node_classification.py
+```
 
-The scripts used for the experiments in the paper are in the `experiments` folder.
+Each script uses [Hydra](https://hydra.cc/) for configuration management. The corresponding YAML config files can be found in the `config` directory. You can override any configuration parameter from the command line, for example:
 
-* `exp1.py` is used to ... . An example of usage is
+```bash
+python run_graph_classification.py dataset=expwl1 pooler=edgepool
+```
 
-	```
-	python experiments/exp1 --config exp1/config.yaml args
-	```
-
-
-## Bibtex reference
-
-If you find this code useful please consider to cite our paper:
+## Project Structure
 
 ```
-{Bibtex reference}
+./
+├── config/                     # Run configuration files
+├── source/                     # Main package directory
+│   ├── data/                   # Dataset handling
+│   ├── layers/                 # Neural network layers
+│   │   ├── maxcutpool/         # MaxCutPool implementation
+│   │   ├── edgepool/           # EdgePool implementation
+│   │   ├── kmis/               # KMIS implementation
+│   │   └── ndp.py              # NDP implementation
+│   ├── models/                 # Model architectures
+│   ├── pl_modules/             # PyTorch Lightning modules
+│   └── utils/                  # Utility functions
+├── example.py                  # Quick start example
+├── run_maxcut.py               # MaxCut experiment runner
+├── run_maxcut_baseline.py      # MaxCut baseline comparisons
+├── run_classification.py       # Classification experiment runner
+├── run_node_classification.py  # Node classification runner
+├── environment.yml             # Conda environment specification
+├── README.md                   # This README file
+├── requirements.txt            # PyG dependencies
+└── LICENSE                     # MIT License
 ```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
