@@ -4,7 +4,7 @@ channels:
   - nvidia
   - conda-forge
 dependencies:
-  - python=3.10
+  - python>=3.9
   - matplotlib
   - pytorch=2.1.2
   - pytorch-cuda=12.1
@@ -25,7 +25,7 @@ dependencies:
       - hydra-joblib-launcher
       - imageio
       - omegaconf
-      - pygsp2
+      - git+https://github.com/gsp-eeg/pygsp2
       - lightning
       - tensorboard
       - -r requirements.txt

@@ -44,8 +44,6 @@ def run(cfg: DictConfig) -> float:
 
 
     ### 🧠 Load the model
-
-
     torch_model = CutModel(
         in_channels=torch_dataset.num_features,                        # Size of node features
         hidden_channels=cfg.architecture.hparams.hidden_channels,              # Dimensionality of node embeddings
@@ -84,6 +82,7 @@ def run(cfg: DictConfig) -> float:
         logger = None
     elif cfg.logger.backend == 'tensorboard':
         logger = CustomTensorBoardLogger(save_dir=cfg.logger.logdir, name=None, version='')
+        logger.cfg = cfg
     else:
         raise NotImplementedError("Logger backend not supported.")
     
