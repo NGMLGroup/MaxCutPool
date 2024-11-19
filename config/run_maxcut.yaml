@@ -1,6 +1,6 @@
 defaults:
   - default
-  - override dataset: grid
+  - override dataset: randreg
   - override architecture: cut
   - override optimizer: adam
   - override pooler: maxcutpool-cut

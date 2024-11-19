@@ -25,7 +25,7 @@ dependencies:
       - hydra-joblib-launcher
       - imageio
       - omegaconf
-      - pygsp
+      - pygsp2
       - lightning
       - tensorboard
       - -r requirements.txt

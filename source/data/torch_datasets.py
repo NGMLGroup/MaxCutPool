@@ -6,17 +6,15 @@ import torch
 import torch_geometric
 from torch_geometric.data import InMemoryDataset, Data, download_url
 from torch_geometric.utils import from_scipy_sparse_matrix, from_networkx
-from pygsp import graphs
+from pygsp2 import graphs
 import os.path as osp
 import shutil
 from typing import Callable, List, Optional
 import networkx as nx
 from io import StringIO
 
-
 from torch_geometric.data import InMemoryDataset, download_url, extract_zip
 from .tu import read_tu_data
-from .randreg import RandomRegular
 from .multipartite_utils import rotate_list, get_graph_data, get_centers
 
 
@@ -167,9 +165,7 @@ class PyGSPDataset(InMemoryDataset):
         if name not in self._GRAPHS and name not in self._NNGRAPHS:
             raise ValueError(f"Graph {name} not available in PyGSP. Available graphs are:\n{self._GRAPHS}\nand\n{self._NNGRAPHS}")
 
-        if name == 'RandomRegular':
-            graph = RandomRegular
-        elif name in self._GRAPHS:
+        if name in self._GRAPHS:
             graph = getattr(graphs, name)
         else:
             graph = getattr(graphs.nngraphs, name)

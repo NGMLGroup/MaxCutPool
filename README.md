@@ -21,14 +21,13 @@ conda env create -f environment.yml
 conda activate maxcutpool
 ```
 
-
 The main dependencies include:
 - Python 3.10
 - PyTorch >= 2.0.0
 - PyTorch Geometric (PyG)
 - PyTorch Lightning
 - Hydra
-- Neptune (for logging)
+- Tensorboard (for logging)
 - Various scientific computing libraries (numpy, scipy, etc.)
 
 For a complete list of dependencies, see `environment.yml`.
