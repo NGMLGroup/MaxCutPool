@@ -1,6 +1,5 @@
 import os
 import os.path as osp
-import time
 
 import torch
 import torch.nn.functional as F
@@ -9,11 +8,9 @@ from torch_scatter import scatter_mean
 from source.data import TUDataModule
 from source.layers.maxcutpool.modules import MaxCutPool
 
-# Constants
-max_nodes = 150
 
 # Setup paths
-path = osp.join('data', 'MUTAG_dense')
+path = osp.join('data', 'MUTAG')
 os.makedirs(path, exist_ok=True)
 
 # Configuration
@@ -35,7 +32,7 @@ class Net(torch.nn.Module):
 
         num_features = data_module.dataset.num_features
         num_classes = data_module.dataset.num_classes
-        hidden_channels = 64  
+        hidden_channels = 32  
 
         # First GINConv layer
         self.conv1 = GINConv(
@@ -51,7 +48,7 @@ class Net(torch.nn.Module):
         score_net_kwargs = {
             'mp_units': [hidden_channels],
             'mp_act': 'ReLU',
-            'mlp_units': [32, 32],
+            'mlp_units': [32]*4,
             'mlp_act': 'ReLU'
         }
         self.pool = MaxCutPool(hidden_channels, **pool_kwargs, **score_net_kwargs)
@@ -69,22 +66,19 @@ class Net(torch.nn.Module):
         self.lin = torch.nn.Linear(hidden_channels, num_classes)
 
     def forward(self, x, edge_index, batch=None):
-        if batch is None:
-            batch = torch.zeros(x.size(0), dtype=torch.long, device=x.device)
 
         # First MP layer
         x = self.conv1(x, edge_index)
 
         # MaxCutPool layer
-        x, edge_index, edge_weight, batch, _, _, mc_loss, _, _ = self.pool(
-            x, edge_index, edge_weight=None, batch=batch
-        )
+        x, edge_index, _, batch, _, _, mc_loss, _, _ = self.pool(
+            x, edge_index, edge_weight=None, batch=batch)
 
         # Second MP layer
         x = self.conv2(x, edge_index)
 
-        # Max pooling layer
-        x = x.mean(dim=0) if batch is None else scatter_mean(x, batch, dim=0)
+        # Global pooling
+        x = scatter_mean(x, batch, dim=0)
 
         # Readout layer
         x = self.lin(x)
@@ -94,9 +88,9 @@ class Net(torch.nn.Module):
 # Device setup
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 model = Net().to(device)
-optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+optimizer = torch.optim.Adam(model.parameters(), lr=5e-4)
 
-def train(epoch):
+def train():
     model.train()
     loss_all = 0
 
@@ -123,15 +117,11 @@ def test(loader):
 
 # Training loop
 best_val_acc = test_acc = 0
-times = []
 for epoch in range(1, 151):
-    start = time.time()
-    train_loss = train(epoch)
+    train_loss = train()
     val_acc = test(data_module.val_dataloader())
     if val_acc > best_val_acc:
         test_acc = test(data_module.test_dataloader())
         best_val_acc = val_acc
     print(f'Epoch: {epoch:03d}, Train Loss: {train_loss:.4f}, '
           f'Val Acc: {val_acc:.4f}, Test Acc: {test_acc:.4f}')
-    times.append(time.time() - start)
-print(f"Median time per epoch: {torch.tensor(times).median():.4f}s")
