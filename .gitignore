@@ -154,8 +154,8 @@ outputs/*
 
 # Output data
 *.gif
-*.png
-*.pdf
+#*.png
+#*.pdf
 *.svg
 *.jpg
 *.pth
