@@ -10,7 +10,8 @@ Official implementation of the paper [*"MaxCutPool: differentiable feature-aware
 
 This repository contains the implementation of MaxCutPool, a novel approach to compute the MAXCUT in attributed graphs. The method is designed to work with graphs that have features associated with both nodes and edges. 
 
-![Layer](docs/maxcutpool_layer.png)
+
+<img src="docs/maxcutpool_layer.png" width=75%>
 
 Key features:
 
