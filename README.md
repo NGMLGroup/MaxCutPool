@@ -1,10 +1,12 @@
 # MaxCutPool
 
 [![arXiv](https://img.shields.io/badge/arXiv-2409.05100-b31b1b.svg?)](https://arxiv.org/abs/2409.05100)
-[![ICLR](https://img.shields.io/badge/ICLR-2025-blue.svg?)](https://iclr.cc/Conferences/2025)
-[![poster](https://custom-icon-badges.demolab.com/badge/poster-pdf-orange.svg?logo=note&logoSource=feather&logoColor=white)](docs/)
+[![ICLR](https://img.shields.io/badge/ICLR-2025-blue.svg?)](https://iclr.cc/virtual/2025/poster/27765)
+[![poster](https://custom-icon-badges.demolab.com/badge/poster-pdf-orange.svg?logo=note&logoSource=feather&logoColor=white)](docs/ICLR_MaxCutPool_poster.pdf)
 
 Official implementation of the paper [*"MaxCutPool: differentiable feature-aware Maxcut for pooling in graph neural networks"*](https://arxiv.org/abs/2409.05100) by Carlo Abate and [Filippo Maria Bianchi](https://sites.google.com/view/filippombianchi/home).
+
+<img src="docs/poster.png" width=100%>
 
 ## ⚡️ TL; DR
 
